@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify the downloaded file information</title>
+    <script>
+        (() => {
+            const res = fetch('http://localhost:3000/show-headers').then(async (data) => {
+                document.body.innerHTML = await data.text();
+            })
+        })();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

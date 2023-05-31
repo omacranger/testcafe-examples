@@ -32,6 +32,8 @@ function stringifyContentIfNecessary (content, contentType) {
 
 http
     .createServer((req, res) => {
+        res.setHeader('access-control-allow-origin', req.headers.origin ?? 'localhost:3000');
+
         if (req.url === '/download-file') {
             const fileStream = fs.createReadStream('./server/data/text-file.txt');
 
@@ -61,6 +63,13 @@ http
 
                 res.end(resultHtml);
             });
+        }
+
+        else if (req.url === '/show-headers') {
+            res.setHeader('content-type', 'application/json');
+            res.end(JSON.stringify({
+                'headers': req.headers,
+            }));
         }
 
         else {
